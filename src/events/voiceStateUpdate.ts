@@ -30,7 +30,10 @@ export default {
             permissionOverwrites: [
                 {
                     id: newState.member?.id || '',
-                    allow: [PermissionsBitField.Flags.ManageChannels],
+                    allow: [
+                        PermissionsBitField.Flags.ManageChannels,
+                        PermissionsBitField.Flags.MoveMembers,
+                    ],
                 },
             ],
         });
