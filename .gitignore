@@ -1,4 +1,5 @@
 .env
 node_modules/
 dist/
+ecosystem.config.cjs
 .vscode/
