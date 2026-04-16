@@ -1,5 +1,5 @@
 import { Client, GatewayIntentBits, Collection } from 'discord.js';
-import { config } from './config/env.js';
+import { env } from './config/env.js';
 import loadCommands from './loaders/commandLoader.js';
 import loadEvents from './loaders/eventLoader.js';
 
@@ -13,4 +13,4 @@ client.commands = new Collection();
 await loadCommands(client);
 await loadEvents(client);
 
-client.login(config.DISCORD_TOKEN);
+client.login(env.DISCORD_TOKEN);

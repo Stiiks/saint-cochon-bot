@@ -6,9 +6,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "start": "node --env-file=.env dist/index.js",
-    "dev": "tsx watch --env-file=.env src/index.ts",
-    "deploy-cmd": "tsx --env-file=.env src/deploy-commands.ts"
+    "start": "node dist/index.js",
+    "dev": "tsx watch src/index.ts",
+    "deploy-cmd": "tsx src/deploy-commands.ts"
   },
   "keywords": [],
   "author": "",

@@ -1,5 +1,5 @@
 import { REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from 'discord.js';
-import { config } from './config/env.js';
+import { env } from './config/env.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -17,7 +17,7 @@ const commandFolders = fs.readdirSync(folderPath);
 for (const folder of commandFolders) {
     const commandsPath = path.join(folderPath, folder);
     // Ensure we only read .js files in production and .ts files in development
-    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(config.NODE_ENV === 'production' ? '.js' : '.ts'));
+    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(env.NODE_ENV === 'production' ? '.js' : '.ts'));
 
     // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
     for (const file of commandFiles) {
@@ -34,7 +34,7 @@ for (const folder of commandFolders) {
 }
 
 // Construct and prepare an instance of the REST module
-const rest = new REST().setToken(config.DISCORD_TOKEN);
+const rest = new REST().setToken(env.DISCORD_TOKEN);
 
 // Command deployment
 (async () => {
@@ -43,7 +43,7 @@ const rest = new REST().setToken(config.DISCORD_TOKEN);
 
         // The put method is used to fully refresh all commands in the guild with the current set
         const data = await rest.put(
-            Routes.applicationGuildCommands(config.CLIENT_ID, config.GUILD_ID),
+            Routes.applicationGuildCommands(env.DISCORD_CLIENT_ID, env.DISCORD_GUILD_ID),
             { body: commands },
         );
 
