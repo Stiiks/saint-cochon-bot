@@ -8,10 +8,13 @@ on:
 jobs:
     deploy:
         runs-on: ubuntu-latest
+        environment: production
 
         steps:
             - name: Connect and deploy to server
               uses: appleboy/ssh-action@master
+              env:
+                ENV_FILE: ${{ secrets.ENV_FILE }}
               with:
                 host: ${{ secrets.SERVER_HOST }}
                 username: ${{ secrets.SERVER_USER }}
@@ -19,4 +22,5 @@ jobs:
                 script: |
                   cd /home/ubuntu/saint-cochon-bot
                   git pull origin main
+                  echo "$ENV_FILE" > .env
                   docker compose -f compose/yaml -f compose.prod.yaml up -d --build bot
