@@ -23,4 +23,4 @@ jobs:
                   cd /home/ubuntu/saint-cochon-bot
                   git pull origin main
                   echo "$ENV_FILE" > .env
-                  docker compose -f compose/yaml -f compose.prod.yaml up -d --build bot
+                  docker compose -f compose.yaml -f compose.prod.yaml up -d --build bot
