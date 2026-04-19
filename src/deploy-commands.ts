@@ -16,8 +16,7 @@ const commandFolders = fs.readdirSync(folderPath);
 
 for (const folder of commandFolders) {
     const commandsPath = path.join(folderPath, folder);
-    // Ensure we only read .js files in production and .ts files in development
-    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(env.NODE_ENV === 'production' ? '.js' : '.ts'));
+    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js') || file.endsWith('.ts'));
 
     // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
     for (const file of commandFiles) {
