@@ -29,6 +29,7 @@ services:
       DISCORD_TOKEN: ${DISCORD_TOKEN}
       DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID}
       DISCORD_GUILD_ID: ${DISCORD_GUILD_ID}
+      BOT_SECRET: ${BOT_SECRET}
       API_URL: http://api:3000
     networks:
       - internal
@@ -46,8 +47,8 @@ services:
       DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID}
       DISCORD_GUILD_ID: ${DISCORD_GUILD_ID}
       DISCORD_BOT_TOKEN: ${DISCORD_TOKEN}
-      DISCORD_REDIRECT_URI: https://${DOMAIN}/auth/callback
-      ALLOWED_ORIGINS: https://${DOMAIN}
+      BOT_SECRET: ${BOT_SECRET}
+      ALLOWED_ORIGINS: https://csc.${DOMAIN}
     networks:
       - internal
       - web
@@ -55,7 +56,8 @@ services:
       - db
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`api.${DOMAIN}`)"
+      - "traefik.docker.network=saint-cochon-bot_web"
+      - "traefik.http.routers.api.rule=Host(`api.csc.${DOMAIN}`)"
       - "traefik.http.routers.api.entrypoints=websecure"
       - "traefik.http.routers.api.tls.certresolver=letsencrypt"
       - "traefik.http.services.api.loadbalancer.server.port=3000"
@@ -67,7 +69,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.webapp.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.webapp.rule=Host(`csc.${DOMAIN}`)"
       - "traefik.http.routers.webapp.entrypoints=websecure"
       - "traefik.http.routers.webapp.tls.certresolver=letsencrypt"
       - "traefik.http.services.webapp.loadbalancer.server.port=80"
