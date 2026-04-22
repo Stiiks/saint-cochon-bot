@@ -9,6 +9,7 @@ services:
       DISCORD_TOKEN: ${DISCORD_TOKEN}
       DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID}
       DISCORD_GUILD_ID: ${DISCORD_GUILD_ID}
+      BOT_SECRET: ${BOT_SECRET}
       API_URL: ${API_URL}
     networks:
       - internal
@@ -37,6 +38,7 @@ services:
       DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID}
       DISCORD_GUILD_ID: ${DISCORD_GUILD_ID}
       DISCORD_BOT_TOKEN: ${DISCORD_TOKEN}
+      BOT_SECRET: ${BOT_SECRET}
       ALLOWED_ORIGINS: "http://localhost:5173"
     networks:
       - internal
@@ -67,3 +69,7 @@ services:
           target: /app/src
         - action: rebuild
           path: ../saint-cochon-webapp/package.json
+
+  db:
+    ports:
+      - "5432:5432"

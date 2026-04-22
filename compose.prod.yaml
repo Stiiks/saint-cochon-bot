@@ -29,6 +29,7 @@ services:
       DISCORD_TOKEN: ${DISCORD_TOKEN}
       DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID}
       DISCORD_GUILD_ID: ${DISCORD_GUILD_ID}
+      BOT_SECRET: ${BOT_SECRET}
       API_URL: http://api:3000
     networks:
       - internal
@@ -46,6 +47,7 @@ services:
       DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID}
       DISCORD_GUILD_ID: ${DISCORD_GUILD_ID}
       DISCORD_BOT_TOKEN: ${DISCORD_TOKEN}
+      BOT_SECRET: ${BOT_SECRET}
       ALLOWED_ORIGINS: https://csc.${DOMAIN}
     networks:
       - internal

@@ -12,6 +12,7 @@ const configSchema = v.object({
     DISCORD_CLIENT_ID: v.pipe(v.string('A client ID is required to run the bot.'), v.nonEmpty('The client ID cannot be empty.')),
     DISCORD_GUILD_ID: v.pipe(v.string('A guild ID is required to run the bot.'), v.nonEmpty('The guild ID cannot be empty.')),
     API_URL: v.pipe(v.string('An API URL is required.'), v.nonEmpty('The API URL cannot be empty.')),
+    BOT_SECRET: v.pipe(v.string('A bot secret is required.'), v.nonEmpty('The bot secret cannot be empty.')),
 });
 
 export const env = v.parse(configSchema, process.env);
